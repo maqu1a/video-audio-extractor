@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#4f46e5" />
+  <meta name="description" content="スマホの動画から音声(mp3/wav)を抜き出して保存。完全ブラウザ内処理・オフラインOK・無料。" />
+  <title>音ぬき — 動画から音声を抜き出す</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">🎵 音ぬき</div>
+    <div class="tagline">動画 → 音声(mp3 / wav)</div>
+  </header>
+
+  <main class="wrap">
+    <!-- STEP 1: 動画を選ぶ -->
+    <section class="card" id="pickCard">
+      <label class="dropzone" id="dropzone">
+        <input type="file" id="fileInput" accept="video/*,audio/*" hidden />
+        <div class="dz-icon">🎬</div>
+        <div class="dz-title">動画を選ぶ</div>
+        <div class="dz-sub">タップして選択（またはここにドロップ）</div>
+        <div class="dz-note">動画/音声ファイルから音だけを取り出します</div>
+      </label>
+      <div class="fileinfo" id="fileInfo" hidden>
+        <span class="fi-name" id="fiName"></span>
+        <span class="fi-size" id="fiSize"></span>
+        <button class="fi-clear" id="fiClear" type="button" aria-label="選び直す">✕</button>
+      </div>
+    </section>
+
+    <!-- STEP 2: 形式を選ぶ -->
+    <section class="card" id="optCard">
+      <h2 class="card-title">出力形式</h2>
+      <div class="segmented" role="radiogroup" aria-label="出力形式">
+        <label class="seg selected">
+          <input type="radio" name="fmt" value="mp3" checked />
+          <span class="seg-main">MP3</span>
+          <span class="seg-sub">小さい・共有向き</span>
+        </label>
+        <label class="seg">
+          <input type="radio" name="fmt" value="wav" />
+          <span class="seg-main">WAV</span>
+          <span class="seg-sub">無圧縮・高音質</span>
+        </label>
+      </div>
+
+      <div class="quality" id="mp3Quality">
+        <label for="bitrate">MP3 音質</label>
+        <select id="bitrate">
+          <option value="128">128 kbps（軽い）</option>
+          <option value="192" selected>192 kbps（標準・おすすめ）</option>
+          <option value="256">256 kbps（高音質）</option>
+          <option value="320">320 kbps（最高）</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- 実行ボタン -->
+    <button class="primary" id="runBtn" disabled>
+      <span id="runLabel">音声を抜き出す</span>
+    </button>
+
+    <!-- 進捗 -->
+    <section class="card progress-card" id="progressCard" hidden>
+      <div class="progress-head">
+        <span id="progressState">準備中…</span>
+        <span id="progressPct">0%</span>
+      </div>
+      <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+      <div class="progress-note" id="progressNote">初回はエンジン(約32MB)を読み込みます。少し待ってね。</div>
+    </section>
+
+    <!-- 結果 -->
+    <section class="card result-card" id="resultCard" hidden>
+      <div class="result-head">✅ 完成しました</div>
+      <div class="result-name" id="resultName"></div>
+      <audio id="player" controls playsinline></audio>
+      <div class="result-actions">
+        <button class="primary" id="saveBtn">保存 / 共有</button>
+        <a class="ghost" id="downloadLink" download>ダウンロード</a>
+      </div>
+      <div class="result-hint" id="saveHint"></div>
+    </section>
+
+    <details class="help">
+      <summary>使い方 / 困ったとき</summary>
+      <ul>
+        <li>動画を選ぶ → 形式(MP3/WAV)を選ぶ → 「音声を抜き出す」。</li>
+        <li>処理はすべて<strong>あなたのスマホの中だけ</strong>で行われ、動画は外部に送信されません。</li>
+        <li><strong>保存 / 共有</strong>を押すと、iPhoneは「ファイル」やLINE等へ、Androidは保存先を選べます。うまくいかない時は「ダウンロード」を使ってください。</li>
+        <li>長い動画・大きいファイルはスマホのメモリ上限で失敗することがあります。その場合は短く切ってからお試しを。</li>
+        <li>一度開けば<strong>オフライン</strong>でも使えます（ホーム画面に追加推奨）。</li>
+      </ul>
+    </details>
+  </main>
+
+  <footer class="foot">完全ローカル処理 · 無料 · <span id="offlineReady">オフライン対応</span></footer>
+
+  <!-- ffmpeg.wasm (ローカル同梱・シングルスレッド版) -->
+  <script src="./vendor/ffmpeg/ffmpeg.js"></script>
+  <script src="./vendor/ffmpeg/util.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

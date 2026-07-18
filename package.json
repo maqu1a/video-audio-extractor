@@ -1,0 +1,13 @@
+{
+  "name": "oto-nuki",
+  "version": "1.0.0",
+  "description": "スマホの動画から音声(mp3/wav)を抜き出すPWA。ffmpeg.wasmを同梱し完全ローカルで変換。",
+  "private": true,
+  "license": "MIT",
+  "comment": "ランタイム依存なし(静的サイト)。vendor/ffmpeg/ の各ファイルは下記 dist を同梱したもの。core は esm 版 ffmpeg-core.js を使用。puppeteer-core は動作確認用の任意ツール。",
+  "devDependencies": {
+    "@ffmpeg/core": "0.12.6",
+    "@ffmpeg/ffmpeg": "0.12.10",
+    "@ffmpeg/util": "0.12.1"
+  }
+}

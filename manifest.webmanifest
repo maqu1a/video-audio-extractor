@@ -1,0 +1,16 @@
+{
+  "name": "音ぬき — 動画から音声を抜き出す",
+  "short_name": "音ぬき",
+  "description": "スマホの動画から音声(mp3/wav)を抜き出して保存。完全ブラウザ内処理・オフラインOK・無料。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f5fb",
+  "theme_color": "#4f46e5",
+  "lang": "ja",
+  "icons": [
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
