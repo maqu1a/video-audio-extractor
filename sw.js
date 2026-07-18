@@ -1,5 +1,5 @@
-/* 音ぬき Service Worker — アプリ本体とエンジンをキャッシュしてオフライン動作 */
-const CACHE = "otonuki-v1";
+/* SoundPeel Service Worker — アプリ本体とエンジンをキャッシュしてオフライン動作 */
+const CACHE = "soundpeel-v1";
 const ASSETS = [
   "./",
   "./index.html",

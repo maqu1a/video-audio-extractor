@@ -1,6 +1,6 @@
 {
-  "name": "音ぬき — 動画から音声を抜き出す",
-  "short_name": "音ぬき",
+  "name": "SoundPeel — 動画から音声を抜き出す",
+  "short_name": "SoundPeel",
   "description": "スマホの動画から音声(mp3/wav)を抜き出して保存。完全ブラウザ内処理・オフラインOK・無料。",
   "start_url": "./",
   "scope": "./",

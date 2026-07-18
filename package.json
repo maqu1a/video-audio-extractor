@@ -1,5 +1,5 @@
 {
-  "name": "oto-nuki",
+  "name": "soundpeel",
   "version": "1.0.0",
   "description": "スマホの動画から音声(mp3/wav)を抜き出すPWA。ffmpeg.wasmを同梱し完全ローカルで変換。",
   "private": true,
